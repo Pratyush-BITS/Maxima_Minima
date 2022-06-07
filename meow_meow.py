@@ -29,16 +29,22 @@ def Divide(data_set, status, break_chain, val):
     
     if lstatus != None and rstatus != None:
         if lstatus != rstatus:
-            return lstatus, True, lArr[-1]
+            if lstatus == 'I':
+                return lstatus, True, max(lArr[-1],rArr[0])
+            else:
+                return lstatus, True, min(lArr[-1],rArr[0])
     
     cur_status, break_chain, val = merge(lArr, rArr)
     return  cur_status, break_chain, val
     
-        
-data_set = [3, 5, 7, 9, 11, 13, 15, 17]
+# strict cases
+# data_set = [3, 5, 7, 9, 11, 13, 15, 17]
 # data_set = [17, 15, 13, 11, 9, 7, 5, 3]
+
+# max - min cases
 # data_set = [13, 15, 17, 19, 17, 15, 13, 11]
 # data_set = [23, 21, 19, 17, 19, 21, 23, 25, 27]
+data_set = [1, 2, 3, 1]
 
 # assuming minimum val is to be printed 
 # if breakchain is true, minima or maxima is present else it's either strictly Inc/Dec
